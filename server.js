@@ -23,9 +23,9 @@ const newUser = new User({
     name: 'Prabin',
     email: 'pravin544@gmail.com', 
     books: [
-      {name: ['JS Expert', 'Express Expert']}, 
-      {description: ['Zero to Hero', "Foundation"]}, 
-      {status: [true, false]}
+      {name: 'JS Expert'}, 
+      {description: 'Zero to Hero'}, 
+      {status: true}
      
     ]
   });
