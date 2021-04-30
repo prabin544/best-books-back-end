@@ -20,28 +20,59 @@ db.once('open', function() {
 const User = require('./models/User')
 
 const newUser = new User({
-    name: 'Prabin',
+    name: 'Prabin Singh',
     email: 'pravin544@gmail.com', 
-    books: [
-      {name: 'JS Expert'}, 
-      {description: 'Zero to Hero'}, 
-      {status: true}
-     
+    books:
+      [
+        {
+          name: 'JS Expert',
+          description: 'Zero to Hero',
+          status: 'published'
+        },
+
+        {
+          name: 'Express Expert',
+          description: 'Zero to Hero',
+          status: 'published'
+        },
+
+        {
+          name: 'Node Expert',
+          description: 'Zero to Hero',
+          status: 'published'
+        },
+ 
+      ]
+    })
+
+const secondUser = new User({
+  name: 'Alex',
+  email: 'pravin544@gmail.com', 
+  books:
+    [
+      {name: 'JS Expert',
+      description: 'Zero to Hero',
+      status: 'published'},
+
+      {name: 'Express Expert',
+      description: 'Zero to Hero',
+      status: 'published'},
+
     ]
-  });
+  })
 
 console.log({newUser})
 newUser.save();
+secondUser.save();
 
 app.get('/', (request, response) => {
-    // when we get that request, send a response that says 'hello!'
-    // response has some methods that are very helpful, such as a send method
     response.send('hello! from best-books backend');
   });
 
 app.get('/books', getAllUsers)
 
 function getAllUsers(request, response) {
+  console.log(request)
   const name = request.query.name;
   console.log({name});
   User.find({name}, (err, person) => {
