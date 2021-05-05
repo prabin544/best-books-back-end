@@ -105,6 +105,21 @@ app.post('/books', (req, res) => {
   });
 });
 
+app.delete('/books/:id', (req, res) => {
+  let email = req.query.user;
+  // find the user
+  User.find({email: email}, (err, userData) => {
+    let user = userData[0];
+    // delete the book
+    user.books = user.books.filter(book => `${book._id}` !== req.params.id);
+    // save the user
+    console.log(user.books);
+    user.save().then(userData => {
+      res.send(userData.books);
+    });
+  });
+});
+
 function getAllUsers(request, response) {
   console.log(request)
   const name = request.query.name;
@@ -112,18 +127,13 @@ function getAllUsers(request, response) {
   User.find({name}, (err, person) => {
     if(err) return console.error(err);
     console.log({person})
-    response.send(person[0].books);
+    if (person && person.length > 0){
+      response.send(person[0].books);
+    } else {
+      response.status(400).send('user does not exist');
+    }
+    
   })
 }
-
-// app.get('/books', (request, response) => {
-//   console.log("This should show books")
-//   User.find(function (err, users) {
-//     if (err) return console.error(err);
-//     console.log(users);
-//     response.send(users);
-//   })
-
-// });
 
 app.listen(PORT, () => console.log(`Server is listening on port ${PORT}`)); 
