@@ -120,6 +120,28 @@ app.delete('/books/:id', (req, res) => {
   });
 });
 
+app.put('/books/:id', (req, res) => {
+  // find the user
+  let email = req.body.user;
+  Users.find({email: email}, (err, userData) => {
+    // update the book
+    let bookId = req.params.id;
+    let user = userData[0];
+    user.books.forEach(book => {
+      if(`${book._id}` === bookId) {
+        // we found the correct book! update it
+        book.name = req.body.name;
+        book.description = req.body.description;
+      }
+    });
+    // save the updated user/book
+    user.save().then(savedUserData => {
+      // send back the new data
+      res.send(savedUserData.books);
+    });
+  });
+});
+
 function getAllUsers(request, response) {
   console.log(request)
   const name = request.query.name;
