@@ -8,10 +8,12 @@
 Back_end Server with Mongoose Connection.
 
 ## Getting Started
-<!-- What are the steps that a user must take in order to build this app on their own machine and get it running? -->
+Git Clone. Run npm i. Open the code. Create a .env file. Add `PORT=3001` and `DATABASE_URL=mongodb://localhost/best-books` on separate lines. Npm Start!
 
 ## Architecture
-<!-- Provide a detailed description of the application design. What technologies (languages, libraries, etc) you're using, and any other relevant design information. -->
+A basic "CRUD" app where users can log in and keep track of their favorite books. Update their status and delete books. 
+
+Built with React, React-bootstrap JS and some light CSS.
 
 ## Change Log
 <!-- Use this area to document the iterative changes made to your application as each feature is successfully implemented. Use time stamps. Here's an example:
@@ -21,11 +23,10 @@ Back_end Server with Mongoose Connection.
 ## Credit and Collaborations
  -Prabin Singh  
  -Adrian Milsap
- 
- 
-Name of feature: ________________________________
 
-Estimate of time needed to complete: _____
+Name of feature: ______________ Lab 13 Card 1 & 2 __________________
+
+Estimate of time needed to complete: __ 4 hr __
 
 Start time: _____
 
